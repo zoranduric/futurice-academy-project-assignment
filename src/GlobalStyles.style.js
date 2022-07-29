@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   body {
+    background: #eee2df;
     min-height: 100vh;
     width:100%;
     font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
@@ -36,9 +37,16 @@ input{
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 5px;
+    background: #eed7c53d;
     @media (max-width: 768px) {
         margin: 15px 0;
       }  
+}
+button{
+    color: #c97c5d;
+    padding: 6px;
+    border-radius: 2px;
+    border: none;
 }
 h1{
     color: #264653;
@@ -53,10 +61,19 @@ ul {
     margin: 0;
 }
 li{
-    padding:0 25px;
-    border: 1px solid #eaeaea;
+    background: #eed7c53d;
+    padding: 15px;
+    border: 1px solid #c89f9c;
     border-radius: 5px;
     margin-bottom: 15px;
+}
+
+
+
+
+img{
+    width:100%;
+    border-radius: 5px;
 }
 a{
     text-decoration: none;
@@ -64,9 +81,11 @@ a{
     
 }
 .userInfoCard {
+    background: #eed7c53d;
     padding: 5px;
-    border: 1px solid #eaeaea;
+    border: 1px solid #c89f9c;
     margin-right: 20px;
+    border-radius: 5px;
 }
 
 `;
