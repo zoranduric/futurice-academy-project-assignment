@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { GlobalStyles } from './GlobalStyles.style.js';
+import { Container } from './styles';
 import Repositories from './components/Repositories';
 import DisplayUserData from './components/DisplayUserData';
 import SearchUser from './components/SearchUser';
@@ -11,7 +13,8 @@ function App() {
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const API_URL = `https://api.github.com/users/${apiEndpoint}/repos`;
+  const API_URL = `https://api.github.com/users/${apiEndpoint}`;
+  const REPO_URL = `https://api.github.com/users/${apiEndpoint}/repos`;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,8 +28,17 @@ function App() {
         const response = await fetch(API_URL);
         if (!response.ok)
           throw Error('Did not recive a response from the server');
+
         const apiData = await response.json();
-        setUserData(apiData);
+        const repoFetch = await fetch(REPO_URL);
+        if (!repoFetch.ok)
+          throw Error('Did not recive a response from the server');
+        const repoData = await repoFetch.json();
+        setUserData({
+          user: apiData,
+          repos: repoData,
+        });
+        //setUserData(apiData);
         setFetchError(null);
       } catch (err) {
         console.log(err.message);
@@ -38,17 +50,22 @@ function App() {
     setTimeout(() => {
       (async () => await fetchItems())();
     }, 2000);
-  }, [API_URL]);
+  }, [API_URL, REPO_URL]);
 
   return (
     <div>
-      <p>futurice-academy-project-assignment</p>
+      <GlobalStyles />
+      <h1>futurice-academy-project-assignment</h1>
       <SearchUser user={user} setUser={setUser} handleSubmit={handleSubmit} />
-      <DisplayUserData />
+      <Container>
+        {userData ? (
+          <DisplayUserData userData={userData} />
+        ) : (
+          <p>{fetchError}</p>
+        )}
 
-      <Repositories userData={userData} />
-
-      <Repositories />
+        <Repositories userData={userData} />
+      </Container>
       {isLoading && <p>Loading...</p>}
     </div>
   );

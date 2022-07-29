@@ -5,7 +5,7 @@ const Repositories = ({ userData }) => {
   return (
     <ul>
       {userData &&
-        userData.map((repo) => (
+        userData.repos.map((repo) => (
           <Repo
             key={repo.id}
             name={repo.name}
@@ -13,6 +13,7 @@ const Repositories = ({ userData }) => {
             creationDate={repo.created_at}
             updateDate={repo.updated_at}
             language={repo.language}
+            description={repo.description}
           />
         ))}
     </ul>
