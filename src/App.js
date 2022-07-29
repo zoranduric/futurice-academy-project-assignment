@@ -9,7 +9,7 @@ function App() {
   const [user, setUser] = useState('');
   // api response
   const [userData, setUserData] = useState(null);
-  const [apiEndpoint, setApiEndpoint] = useState('Zokiu');
+  const [apiEndpoint, setApiEndpoint] = useState('leonardomso');
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,8 +18,9 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    setIsLoading(true);
     setApiEndpoint(user);
+    setUser('');
   };
 
   useEffect(() => {
@@ -47,9 +48,7 @@ function App() {
         setIsLoading(false);
       }
     };
-    setTimeout(() => {
-      (async () => await fetchItems())();
-    }, 2000);
+    fetchItems();
   }, [API_URL, REPO_URL]);
 
   return (

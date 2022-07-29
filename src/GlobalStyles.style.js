@@ -42,11 +42,18 @@ input{
         margin: 15px 0;
       }  
 }
+input:focus{
+    outline: 1px solid #b36a5e;
+}
 button{
+    background-color: white;
     color: #c97c5d;
     padding: 6px;
-    border-radius: 2px;
+    border-radius: 4px;
     border: none;
+}
+button:disabled{
+    text-decoration: line-through;
 }
 h1{
     color: #264653;
@@ -67,9 +74,9 @@ li{
     border-radius: 5px;
     margin-bottom: 15px;
 }
-
-
-
+.repoDescription{
+    margin-top:15px;
+}
 
 img{
     width:100%;
@@ -86,6 +93,9 @@ a{
     border: 1px solid #c89f9c;
     margin-right: 20px;
     border-radius: 5px;
+    @media (max-width: 768px) {
+        margin: 0  0 20px 0;
+        margin-bottom: 20px;
+      }  
 }
-
 `;

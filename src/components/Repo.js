@@ -13,7 +13,9 @@ const Repo = ({
       <a target='blank' href={url}>
         💾 {name}
       </a>
-      {description && <p>Description: {description}</p>}
+      {description && (
+        <p className='repoDescription'>Description: {description}</p>
+      )}
       {creationDate && <p>Created at: {creationDate}</p>}
       {updateDate && <p>Updated at: {updateDate}</p>}
       {language && <p>Language: {language}</p>}
