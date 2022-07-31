@@ -62,8 +62,7 @@ function App() {
         ) : (
           <p>{fetchError}</p>
         )}
-
-        <Repositories userData={userData} />
+        {userData ? <Repositories userData={userData} /> : <p>Loading</p>}
       </Container>
       {isLoading && <p>Loading...</p>}
     </div>
