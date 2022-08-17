@@ -1,6 +1,15 @@
-import React from 'react';
+import { useContext, useState } from 'react';
+import GithubContext from '../context/GithubContext';
 
-const SearchUser = ({ user, setUser, handleSubmit }) => {
+const SearchUser = () => {
+  const [user, setUser] = useState('');
+  const { searchUser } = useContext(GithubContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchUser(user);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>Enter github username</label>
