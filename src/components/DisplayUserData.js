@@ -4,20 +4,40 @@ import GithubContext from '../context/GithubContext';
 const DisplayUserData = () => {
   const { userData } = useContext(GithubContext);
 
-  if (userData.length <= 0) {
-    console.log('userData is null');
-  } else {
-    return console.log(userData.user.login);
-  }
+  const {
+    name,
+    location,
+    public_repos,
+    login,
+    avatar_url,
+    blog,
+    company,
+    created_at,
+    followers,
+    following,
+  } = userData.user;
 
   return (
-    <div style={{ marginRight: '12px' }}>
-      <p> Text</p>
-      {userData?.user?.login ? (
-        <div> {userData.user.login} </div>
+    <div className='userInfoCard'>
+      <img src={avatar_url} alt={`${name} avater `} />
+      <p> {name} </p>
+      {location && <p>Location: {location} </p>}
+      {public_repos > 0 ? (
+        <p>Repos: {public_repos}</p>
       ) : (
-        <div> no input </div>
+        <p> user has no public repos</p>
       )}
+      <p>username: {login} </p>
+
+      {blog && (
+        <a alt='website' href={blog}>
+          website
+        </a>
+      )}
+      {company && <p>Comapny: {company} </p>}
+      <p>Created at: {created_at} </p>
+      <p>Followers: {followers} </p>
+      <p>Followers: {following} </p>
     </div>
   );
 };

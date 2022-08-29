@@ -7,10 +7,10 @@ const GithubContext = createContext();
 export const GithubProvider = ({ children }) => {
   const initialState = {
     user: '',
-    isLoading: false,
+    isLoading: true,
     fetchError: null,
     apiEndpoint: 'leonardomso',
-    userData: [],
+    userData: null,
   };
 
   const [state, dispatch] = useReducer(githubReducer, initialState);
@@ -39,6 +39,7 @@ export const GithubProvider = ({ children }) => {
     }
 
     // finally { setLoading(false)}
+    console.log('end of user & repo request');
   };
 
   const setLoading = (condition) => {
@@ -50,7 +51,7 @@ export const GithubProvider = ({ children }) => {
       type: 'SET_USER',
       payload: user,
     });
-    setLoading(true);
+    console.log('search user function');
     fetchUserAndRepos(user);
   };
   return (
@@ -58,10 +59,10 @@ export const GithubProvider = ({ children }) => {
       value={{
         user: state.user,
         isLoading: state.isLoading,
-        setLoading,
         fetchError: state.fetchError,
         apiEndpoint: state.apiEndpoint,
         userData: state.userData,
+        setLoading,
         searchUser,
       }}
     >

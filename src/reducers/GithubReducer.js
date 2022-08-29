@@ -4,7 +4,6 @@ const githubReducer = (state, action) => {
       return {
         ...state,
         user: action.payload,
-        isLoading: false,
       };
     case 'FETCH_ERROR':
       return {

@@ -8,6 +8,7 @@ const SearchUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     searchUser(user);
+    setUser('');
   };
 
   return (
